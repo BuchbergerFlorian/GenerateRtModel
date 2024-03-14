@@ -15,7 +15,6 @@
 
     <ItemGroup>
       <Folder Include="Data_Reading\" />
-      <Folder Include="Data_Storing\" />
       <Folder Include="Data_Storing\Yaml\Yaml File\" />
     </ItemGroup>
 

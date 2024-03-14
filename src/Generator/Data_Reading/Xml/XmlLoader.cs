@@ -14,10 +14,10 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
                 switch (programPart)
                 {
                     case "eqModel":
-                        _xmlFile = XDocument.Load(@"C:\dev\GenerateRtModel\Generator\Data_Reading\Xml\XML Files\EQModel.XML");
+                        _xmlFile = XDocument.Load(@"C:\dev\GenerateRtModel\src\Generator\Data_Reading\Xml\XML Files\EQModel_Basisproject.XML");
                         break;
                     case "variableModel":
-                        _xmlFile = XDocument.Load(@"C:\dev\GenerateRtModel\Generator\Data_Reading\Xml\XML Files\Variables.XML");
+                        _xmlFile = XDocument.Load(@"C:\dev\GenerateRtModel\src\Generator\Data_Reading\Xml\XML Files\Variables_Basisproject.XML");
                         break;
                 }
             }

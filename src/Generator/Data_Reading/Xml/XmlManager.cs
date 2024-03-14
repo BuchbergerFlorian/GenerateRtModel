@@ -1,90 +1,43 @@
 ﻿using System.Xml.Linq;
-using MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel;
-using Meshmakers.Octo.ConstructionKit.Contracts;
-using static System.Console;
+using MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing;
 
 namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
 {
     public class XmlManager
     {
-        private int _groupDepth;
-        private int _groupIdListIndex;
-        private OctoObjectId _modelRtId;
-        private readonly GroupIdsRepository _groupList;
-        
-        public XmlManager()
-        {
-            _groupDepth = 0;
-            _groupIdListIndex = 0;
-            _groupList = new GroupIdsRepository();
-        }
-
         public XElement? GetRootElement(string programPart)
         {
             XElement? rootElement = new XmlLoader(programPart).RootElement;
             return rootElement;
         }
 
-        public void IterateOverEqModel(XElement element, int depth, RtModel rtModel)
+        public void IterateOverEqModel(XElement element, int depth, EqModelRepository eqModelRepository)
         {
-            var elementData = new XmlElementData(element, depth);
-            WriteLine($"{elementData}");
-            
-            switch (elementData.ElementType)
+            bool elementIsModelOrGroup = CheckElementForModelOrGroup(element);
+            if (elementIsModelOrGroup)
             {
-                case "Model":
-                    _modelRtId = OctoObjectId.GenerateNewId();
-                    string? elementName = elementData.ElementName;
-                    rtModel.AddModelToRoot(elementName, _modelRtId);
-                    break;
-            
-                case "Group":
-                    ProcessGroupElement(elementData, depth, rtModel);
-                    break;
+               var elementData = new XmlElementData(element, depth)
+               {
+                   TargetCkType = element.Parent?.Parent?.Name == "Model" ? "Basic/EquipmentModel" : "Basic/EquipmentGroup"
+               };
+
+               eqModelRepository.AddElementToList(elementData);
             }
             
             foreach (var childElement in element.Elements())
             {
-                IterateOverEqModel(childElement, depth + 1, rtModel);
+                IterateOverEqModel(childElement, depth + 1, eqModelRepository);
             }
         }
-        
-        private void ProcessGroupElement(XmlElementData elementData, int elementDepth, RtModel rtModel)
+
+        private bool CheckElementForModelOrGroup(XElement element)
         {
-            string? groupName = elementData.ElementName;
-            bool isModelParent = elementData.ModelIsTheParentElement;
-    
-            if ((_groupDepth <= elementDepth || elementDepth < _groupDepth) && isModelParent)
-            { 
-                _groupList.AddGroupIdToList(elementDepth);
-                rtModel.AddGroupToRoot(groupName, _modelRtId,_groupList.GetGroupIdFromListIndex(_groupIdListIndex), "Basic/EquipmentModel");
-                _groupIdListIndex ++;
-
-            }
-            else if (_groupDepth < elementDepth)
+            if (element.Name == "Model" || element.Name == "Group")
             {
-                _groupList.AddGroupIdToList(elementDepth);
-                rtModel.AddGroupToRoot(groupName, _groupList.GetGroupIdFromListIndex(_groupIdListIndex-1), _groupList.GetGroupIdFromListIndex(_groupIdListIndex), "Basic/EquipmentGroup");
-                _groupIdListIndex ++;
-
+                return true;
             }
-            else if (elementDepth <= _groupDepth)
-            {
-                _groupList.AddGroupIdToList(elementDepth);
 
-                OctoObjectId targetId = default;
-                for (int i = 0; i < _groupList.GetLengthOfList(); i++)
-                {
-                    if (_groupList.GetDepthFromListIndex(i) <
-                        _groupList.GetDepthFromListIndex(_groupIdListIndex))
-                    {
-                        targetId = _groupList.GetGroupIdFromListIndex(i);
-                    }
-                }
-                rtModel.AddGroupToRoot(groupName, targetId, _groupList.GetGroupIdFromListIndex(_groupIdListIndex), "Basic/EquipmentGroup");
-                _groupIdListIndex ++;
-            }
-            _groupDepth = elementDepth;
+            return false;
         }
 
         public void IterateOverVariableModel(XElement element, VariableRepository variableList)
@@ -98,15 +51,16 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
                     string? variableName = variable.Element("Name")?.Value;
                     string? description = variable.Element("Description")?.Value;
                     string? modelGroup = variable.Element("SystemModelGroup")?.Value;
-                    string[] groups = [];
 
                     if (!string.IsNullOrEmpty(modelGroup))
                     {
-                       groups = modelGroup.Split(';'); 
-                       variableList.AddVariableToList(variableName ?? string.Empty, description ?? string.Empty, groups);
+                        string[] groups = modelGroup.Split(';');
+                        variableList.AddVariableToList(variableName ?? string.Empty, description ?? string.Empty, groups);
                     }
                 }
             }
         }
+
+        
     }
 }

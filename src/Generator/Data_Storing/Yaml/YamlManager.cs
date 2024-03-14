@@ -6,7 +6,7 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.Yaml
 {
     public class YamlManager
     {
-        private static IRtYamlSerializer _rtYamlSerializer;
+        private static IRtYamlSerializer? _rtYamlSerializer;
 
         public YamlManager()
         {
@@ -18,9 +18,9 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.Yaml
         
         public async void GenerateYamlFile(RtModelRootDto root)
         {
-            await using var fileStream = File.OpenWrite("C:\\dev\\GenerateRtModel\\Generator\\Data_Storing\\Yaml\\Yaml File\\EQModel.yaml");
+            await using var fileStream = File.OpenWrite("C:\\dev\\GenerateRtModel\\src\\Generator\\Data_Storing\\Yaml\\Yaml File\\EQModel.yaml");
             await using var streamWriter = new StreamWriter(fileStream);
-            await _rtYamlSerializer.SerializeAsync(streamWriter, root);
+            if (_rtYamlSerializer != null) await _rtYamlSerializer.SerializeAsync(streamWriter, root);
         }
     }
 }

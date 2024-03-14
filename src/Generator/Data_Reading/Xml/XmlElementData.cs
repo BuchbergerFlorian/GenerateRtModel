@@ -1,21 +1,47 @@
 ﻿using System.Xml.Linq;
+using Meshmakers.Octo.ConstructionKit.Contracts;
 
 namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
 {
     public class XmlElementData
     {
-        private readonly int _depth;
+        private int _depth;
         private string? _elementType;
         private string? _elementName;
-        private bool _modelIsTheParentElement;
-        private string _description;
+        private string? _elementDescription;
+        private OctoObjectId _id;
+        private OctoObjectId _targetId;
+        private string? _targetCkType;
+        private string? _eqGroupName;
+        
+        private readonly List<StructForVariable> _variables = new();
+
+        public XmlElementData(XElement element, int depth)
+        {
+            Depth = depth;
+            ElementType = element.Name.ToString();
+            ElementName = element.Element("Name")?.Value;
+            ElementDescription = element.Element("Description")?.Value;
+            Id = OctoObjectId.GenerateNewId();
+            TargetId = OctoObjectId.Empty;
+            TargetCkType = string.Empty;
+            EqGroupName = string.Empty;
+        }
+
+        public int Depth
+        {
+            get => _depth;
+            private set
+            {
+                _depth = value;
+            }
+        }
 
         public string? ElementType
         {
             get => _elementType;
             private set => _elementType = value;
         }
-
         public string? ElementName
         {
             get => _elementName;
@@ -27,31 +53,78 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
                 }
             }
         }
-        
-        public bool ModelIsTheParentElement
+        public string? ElementDescription
         {
-            get => _modelIsTheParentElement;
-            private set => _modelIsTheParentElement = value;
-        }
-        public XmlElementData(XElement element, int depth)
-        {
-            _depth = depth;
-            ElementType = element.Name.ToString();
-            ElementName = element.Element("Name")?.Value;
-            CheckForModelParent(element);
-        }
-        
-        private void CheckForModelParent(XElement element)
-        {
-            if (element.Parent?.Parent?.Name == "Model")
+            get => _elementDescription;
+            private set
             {
-                ModelIsTheParentElement = true;
+                if (value != null)
+                {
+                    _elementDescription = value;
+                }
+            }
+        }
+
+        public OctoObjectId Id
+        {
+            get => _id; 
+            private set
+            {
+                _id = value;
+            }
+        }
+
+        public OctoObjectId TargetId
+        {
+            get => _targetId;
+            set => _targetId = value;
+        }
+        
+        public string? TargetCkType
+        {
+            get => _targetCkType;
+            set
+            {
+                _targetCkType = value;
+            }
+        }
+        
+        public string? EqGroupName
+        {
+            get => _eqGroupName;
+            set
+            {
+                _eqGroupName = value;
+            }
+        }
+        
+        public List<StructForVariable> Variables
+        {
+            get => _variables;
+        }
+        public void AddVariable(string name, string description)
+        {
+            StructForVariable newData = new StructForVariable();
+            newData.Name = name;
+            newData.Description = description;
+            _variables.Add(newData);
+        }
+
+        public struct StructForVariable
+        {
+            public string Name;
+            public string Description;
+
+            public StructForVariable()
+            {
+                Name = "";
+                Description = "";
             }
         }
  
         public override string ToString()
         {
-           return $"Depth: {_depth}  {new string(' ', _depth * 4)} {ElementType}"; 
+           return $"Depth: {_depth}  {new string(' ', _depth * 2)} {ElementType}: {ElementName}, {ElementDescription}, {_id}, {TargetId}, {TargetCkType}"; 
         }
     }    
 }

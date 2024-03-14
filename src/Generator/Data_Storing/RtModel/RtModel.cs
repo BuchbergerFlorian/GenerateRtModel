@@ -5,11 +5,11 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel
 { 
     public class RtModel
     {
-        private readonly RtModelRootDto _root;
+        public readonly RtModelRootDto Root;
 
         public RtModel()
         {
-            _root = new RtModelRootDto
+            Root = new RtModelRootDto
             {
                 Dependencies = ["Basic"],
                 Entities = []
@@ -18,7 +18,7 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel
         
         public void AddModelToRoot(string? modelName, OctoObjectId modelRtId)
         {
-            _root.Entities.Add(new RtEntityDto
+            Root.Entities.Add(new RtEntityDto
             {
                 RtId = modelRtId,
                 CkTypeId = "Basic/EquipmentModel",
@@ -33,9 +33,9 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel
             });
         }
     
-        public void AddGroupToRoot(string? groupName, OctoObjectId targetId, OctoObjectId objectId, string targetCkType)
+        public void AddGroupToRoot(string? groupName, OctoObjectId targetId, OctoObjectId objectId, string? targetCkType)
         {
-            _root.Entities.Add(new RtEntityDto
+            Root.Entities.Add(new RtEntityDto
             {
                 RtId = objectId,
                 CkTypeId = "Basic/EquipmentGroup",
@@ -58,8 +58,6 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel
                 ]
             });
         }
-
-        public RtModelRootDto GetModelRoot() => _root;
     }
 }
 

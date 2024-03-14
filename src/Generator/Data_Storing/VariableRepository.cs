@@ -1,4 +1,4 @@
-﻿namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel
+﻿namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing
 {
     public class VariableRepository
     {
@@ -9,12 +9,12 @@
             _listOfVariables = new List<StructForVariableRepository>();
         }
         
-        public void AddVariableToList(string name, string description, string[] eqModel)
+        public void AddVariableToList(string name, string description, string[] eqModels)
         {
             StructForVariableRepository newData;
             newData.Name = name;
             newData.Description = description;
-            newData.EqModel = eqModel;
+            newData.EqModels = eqModels;
             
             _listOfVariables.Add(newData);
         }
@@ -29,6 +29,20 @@
             return _listOfVariables.Count;
         }
 
+        public override string? ToString()
+        {
+            foreach (var variable in _listOfVariables)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Name: {variable.Name}, Description: {variable.Description}");
+                foreach (var eqModel in variable.EqModels)
+                {
+                    Console.WriteLine($"EQ-Model: {eqModel}");
+                }
+            }
+            return null;
+        }
+        
     }
 }
 
