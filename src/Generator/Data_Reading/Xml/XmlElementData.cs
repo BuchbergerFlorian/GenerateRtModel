@@ -9,9 +9,10 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
         private string? _elementType;
         private string? _elementName;
         private string? _elementDescription;
+        private string _ckTypeId = "";
         private OctoObjectId _id;
         private OctoObjectId _targetId;
-        private string? _targetCkType;
+        private string _targetCkType = "";
         private string? _eqGroupName;
         
         private readonly List<StructForVariable> _variables = new();
@@ -22,6 +23,7 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
             ElementType = element.Name.ToString();
             ElementName = element.Element("Name")?.Value;
             ElementDescription = element.Element("Description")?.Value;
+            CkTypeId = ExtractStringFromDescription(ElementDescription);
             Id = OctoObjectId.GenerateNewId();
             TargetId = OctoObjectId.Empty;
             TargetCkType = string.Empty;
@@ -64,6 +66,29 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
                 }
             }
         }
+        
+        public string CkTypeId
+        {
+            get => _ckTypeId;
+            set
+            {
+                _ckTypeId = value;
+            }
+        }
+
+        private string ExtractStringFromDescription(string? description)
+        {
+            int startIndex = description!.IndexOf('"') + 1;
+            int endIndex = description.LastIndexOf('"');
+            if (startIndex >= 0 && endIndex >= 0 && endIndex > startIndex)
+            {
+                return description.Substring(startIndex, endIndex - startIndex);
+            }
+            else
+            {
+                return "";
+            }
+        }
 
         public OctoObjectId Id
         {
@@ -80,7 +105,7 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
             set => _targetId = value;
         }
         
-        public string? TargetCkType
+        public string TargetCkType
         {
             get => _targetCkType;
             set
@@ -124,7 +149,7 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
  
         public override string ToString()
         {
-           return $"Depth: {_depth}  {new string(' ', _depth * 2)} {ElementType}: {ElementName}, {ElementDescription}, {_id}, {TargetId}, {TargetCkType}"; 
+           return $"Depth: {_depth}  {new string(' ', _depth * 2)} Type: {ElementType}: Name: {ElementName}, {_id}, {TargetId}, CkTypeId: {CkTypeId}"; 
         }
     }    
 }

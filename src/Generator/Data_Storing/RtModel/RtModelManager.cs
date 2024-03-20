@@ -14,9 +14,14 @@ public class RtModelManager
         foreach (var element in eqModelList)
         {
             if (element.ElementType == "Model")
-                _rtModel.AddModelToRoot(element.ElementName, element.Id);
+                _rtModel.AddObjectToRoot(element.ElementName, element.Id);
             else
-                _rtModel.AddGroupToRoot(element.ElementName, element.TargetId, element.Id, element.TargetCkType );
+            {
+                if (element.CkTypeId != "")
+                {
+                    _rtModel.AddObjectToRoot(element.ElementName, element.Id, element.TargetId, element.TargetCkType, element.CkTypeId);
+                }
+            }
         }
     }
     

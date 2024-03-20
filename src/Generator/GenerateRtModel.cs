@@ -13,7 +13,6 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator
             var xmlManager = new XmlManager();
             
             //Process for reading and manage Zenon EQModel as xml data
-            //and convert it to a linear relationship database in a Yaml file
             string programPart = "eqModel";
             
             var rootElementInEqModelXml = xmlManager.GetRootElement(programPart);

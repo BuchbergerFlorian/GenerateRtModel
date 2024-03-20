@@ -60,7 +60,5 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
                 }
             }
         }
-
-        
     }
 }

@@ -16,35 +16,35 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel
             };
         }
         
-        public void AddModelToRoot(string? modelName, OctoObjectId modelRtId)
+        public void AddObjectToRoot(string? elementName, OctoObjectId elementRtId)
         {
             Root.Entities.Add(new RtEntityDto
             {
-                RtId = modelRtId,
+                RtId = elementRtId,
                 CkTypeId = "Basic/EquipmentModel",
                 Attributes =
                 [
                     new()
                     {
                         Id = "System/Name",
-                        Value = modelName
+                        Value = elementName
                     }
                 ]
             });
         }
     
-        public void AddGroupToRoot(string? groupName, OctoObjectId targetId, OctoObjectId objectId, string? targetCkType)
+        public void AddObjectToRoot(string? elementName, OctoObjectId elementRtId, OctoObjectId targetId, string targetCkType, string ckTypeId)
         {
             Root.Entities.Add(new RtEntityDto
             {
-                RtId = objectId,
-                CkTypeId = "Basic/EquipmentGroup",
+                RtId = elementRtId,
+                CkTypeId = ckTypeId,
                 Attributes =
                 [
                     new()
                     {
                         Id = "System/Name",
-                        Value = groupName
+                        Value = elementName
                     }
                 ],
                 Associations =
