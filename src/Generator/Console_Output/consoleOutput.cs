@@ -1,6 +1,6 @@
-﻿using MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml;
+﻿using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
 
-namespace MeshMakers.GenerateRtModel.Logic.Generator.Console_Output;
+namespace MeshMakers.GenerateRtModel.Generator.Console_Output;
 
 public class ConsoleOutput
 {

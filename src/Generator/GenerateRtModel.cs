@@ -1,10 +1,10 @@
-﻿using MeshMakers.GenerateRtModel.Logic.Generator.Console_Output;
-using MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml;
-using MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing;
-using MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel;
-using MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.Yaml;
+﻿using MeshMakers.GenerateRtModel.Generator.Console_Output;
+using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
+using MeshMakers.GenerateRtModel.Generator.Data_Storing;
+using MeshMakers.GenerateRtModel.Generator.Data_Storing.RtModel;
+using MeshMakers.GenerateRtModel.Generator.Data_Storing.Yaml;
 
-namespace MeshMakers.GenerateRtModel.Logic.Generator
+namespace MeshMakers.GenerateRtModel.Generator
 {
     public static class GenerateRtModel
     {
@@ -13,9 +13,8 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator
             var xmlManager = new XmlManager();
             
             //Process for reading and manage Zenon EQModel as xml data
-            string programPart = "eqModel";
             
-            var rootElementInEqModelXml = xmlManager.GetRootElement(programPart);
+            var rootElementInEqModelXml = xmlManager.GetRootElement(@"C:\dev\GenerateRtModel\src\Generator\Data_Reading\Xml\XML Files\EQModel_Basisproject.XML");
             var eqModelRepository = new EqModelRepository();
             
             if (rootElementInEqModelXml != null)
@@ -27,9 +26,8 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator
             eqModelRepository.GenerateCompleteGroupName();
             
             //Process for reading and manage Zenon Variables from xml data
-            programPart = "variableModel";
             
-            var rootElementInVariableXml = xmlManager.GetRootElement(programPart);
+            var rootElementInVariableXml = xmlManager.GetRootElement(@"C:\dev\GenerateRtModel\src\Generator\Data_Reading\Xml\XML Files\Variables_Basisproject.XML");
             VariableRepository variableRepository = new VariableRepository();
             
             if (rootElementInVariableXml != null)
@@ -38,16 +36,15 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator
             }
             
             //Merge Variable Collection into eqModelRepository 
-            var variableCollection = variableRepository.GetList();
-            eqModelRepository.MergeVariablesIntoEqModelRepository(variableCollection);
+            var variables = variableRepository.GetList();
+            eqModelRepository.MergeVariablesIntoEqModelRepository(variables);
 
             var eqModelList = eqModelRepository.GetElementList();
             new ConsoleOutput().WriteToConsole(eqModelList);
             
             
             //Generate RtModel
-            var rtModelManager = new RtModelManager();
-            rtModelManager.CreateModel(eqModelList);
+            var rtModelManager = new RtModelManager(eqModelList);
             var rtModel = rtModelManager.GetRtModel().Root;
             
             //Generate Yaml File

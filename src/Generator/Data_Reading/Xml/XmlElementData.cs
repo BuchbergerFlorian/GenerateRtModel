@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Meshmakers.Octo.ConstructionKit.Contracts;
 
-namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
+namespace MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml
 {
     public class XmlElementData
     {
@@ -15,7 +15,7 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
         private string _targetCkType = "";
         private string? _eqGroupName;
         
-        private readonly List<StructForVariable> _variables = new();
+        private List<StructForVariable> _variables = new();
 
         public XmlElementData(XElement element, int depth)
         {
@@ -126,13 +126,14 @@ namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
         public List<StructForVariable> Variables
         {
             get => _variables;
+            set => _variables = value;
         }
         public void AddVariable(string name, string description)
         {
             StructForVariable newData = new StructForVariable();
             newData.Name = name;
             newData.Description = description;
-            _variables.Add(newData);
+            Variables.Add(newData);
         }
 
         public struct StructForVariable

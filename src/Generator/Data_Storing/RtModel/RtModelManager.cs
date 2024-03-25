@@ -1,14 +1,18 @@
-﻿using MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml;
+﻿using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
 
-namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing.RtModel;
+namespace MeshMakers.GenerateRtModel.Generator.Data_Storing.RtModel;
 
 public class RtModelManager
 {
-    private readonly RtModel _rtModel; 
-    
-    public RtModelManager() => _rtModel = new RtModel();
-    
-    public void CreateModel(List<XmlElementData>? eqModelList)
+    private readonly RtModel _rtModel;
+
+    public RtModelManager(List<XmlElementData>? eqModelList)
+    {
+        _rtModel = new RtModel();
+        CreateModel(eqModelList);
+    }
+
+    private void CreateModel(List<XmlElementData>? eqModelList)
     {
         if (eqModelList == null) return;
         foreach (var element in eqModelList)
@@ -23,6 +27,10 @@ public class RtModelManager
                 }
             }
         }
+        
+        
+        _rtModel.AddCommunicationEdgeAdapter(eqModelList);
+        _rtModel.AddCommunicationDataPipeLine();
     }
     
     public RtModel GetRtModel() => _rtModel;

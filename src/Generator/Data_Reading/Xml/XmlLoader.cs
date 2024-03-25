@@ -1,25 +1,17 @@
 ﻿using System.Xml.Linq;
 
-namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
+namespace MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml
 {
     public class XmlLoader
     {
         private readonly XDocument? _xmlFile;
         public XElement? RootElement { get; private set; }
     
-        public XmlLoader(string programPart)
+        public XmlLoader(string xmlFilePath)
         {
             try
-            {
-                switch (programPart)
-                {
-                    case "eqModel":
-                        _xmlFile = XDocument.Load(@"C:\dev\GenerateRtModel\src\Generator\Data_Reading\Xml\XML Files\EQModel_Basisproject.XML");
-                        break;
-                    case "variableModel":
-                        _xmlFile = XDocument.Load(@"C:\dev\GenerateRtModel\src\Generator\Data_Reading\Xml\XML Files\Variables_Basisproject.XML");
-                        break;
-                }
+            { 
+                _xmlFile = XDocument.Load(xmlFilePath);
             }
             catch (FileNotFoundException)
             {

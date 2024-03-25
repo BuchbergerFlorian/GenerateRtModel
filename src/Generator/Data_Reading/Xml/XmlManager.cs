@@ -1,13 +1,13 @@
 ﻿using System.Xml.Linq;
-using MeshMakers.GenerateRtModel.Logic.Generator.Data_Storing;
+using MeshMakers.GenerateRtModel.Generator.Data_Storing;
 
-namespace MeshMakers.GenerateRtModel.Logic.Generator.Data_Reading.Xml
+namespace MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml
 {
     public class XmlManager
     {
-        public XElement? GetRootElement(string programPart)
+        public XElement? GetRootElement(string xmlFilePath)
         {
-            XElement? rootElement = new XmlLoader(programPart).RootElement;
+            XElement? rootElement = new XmlLoader(xmlFilePath).RootElement;
             return rootElement;
         }
 
