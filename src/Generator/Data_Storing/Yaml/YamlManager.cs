@@ -2,7 +2,7 @@
 using Meshmakers.Octo.Runtime.Contracts.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MeshMakers.GenerateRtModel.Generator.Data_Storing.Yaml
+namespace MeshMakers.GenerateRtModel.Generator.Generator.Data_Storing.Yaml
 {
     public class YamlManager
     {

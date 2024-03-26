@@ -36,7 +36,6 @@ namespace MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml
             {
                 return true;
             }
-
             return false;
         }
 
