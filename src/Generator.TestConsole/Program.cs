@@ -1,6 +1,4 @@
-﻿using Generator;
-
-namespace MeshMakers.GenerateRtModel.Generator
+﻿namespace MeshMakers.GenerateRtModel.Generator
 {
     public static class Program
     {

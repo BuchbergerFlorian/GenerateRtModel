@@ -1,4 +1,6 @@
 ﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
+using Meshmakers.Octo.ConstructionKit.Contracts;
+using Meshmakers.Octo.Runtime.Contracts.DataTransferObjects;
 
 namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel
 { 

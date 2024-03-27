@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Meshmakers.Octo.Runtime.Contracts.DataTransferObjects;
+using Meshmakers.Octo.Runtime.Contracts.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MeshMakers.GenerateRtModel.Generator.DataStoring.Yaml
 {
@@ -16,8 +18,8 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.Yaml
         
         public async void GenerateYamlFile(RtModelRootDto root)
         {
-            await using var fileStream = File.OpenWrite("C:\\dev\\GenerateRtModel\\src\\Generator\\DataStoring\\Yaml\\YamlFile\\RtModel.yaml");
-            await using var streamWriter = new StreamWriter(fileStream);
+            using var fileStream = File.OpenWrite("C:\\dev\\GenerateRtModel\\src\\Generator\\DataStoring\\Yaml\\YamlFile\\RtModel.yaml");
+            using var streamWriter = new StreamWriter(fileStream);
             if (_rtYamlSerializer != null) await _rtYamlSerializer.SerializeAsync(streamWriter, root);
         }
     }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator.TestConsole", "Ge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizard", "Wizard\Wizard.csproj", "{9FC457C9-2F40-4590-9906-ED599983800F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator", "Generator\Generator.csproj", "{1B0922A5-4C86-41FC-BF38-AAF11C5DE977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator", "Generator\Generator.csproj", "{1B0922A5-4C86-41FC-BF38-AAF11C5DE977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

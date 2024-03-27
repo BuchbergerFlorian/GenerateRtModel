@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Meshmakers.Octo.Runtime.Engine" Version="3.0.197" />
+        <PackageReference Include="Meshmakers.Octo.Runtime.Engine" Version="3.0.198" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     </ItemGroup>
 
