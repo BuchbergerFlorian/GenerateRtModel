@@ -1,10 +1,9 @@
-﻿using MeshMakers.GenerateRtModel.Generator.Console_Output;
-using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
-using MeshMakers.GenerateRtModel.Generator.Data_Storing;
-using MeshMakers.GenerateRtModel.Generator.Data_Storing.RtModel;
-using MeshMakers.GenerateRtModel.Generator.Generator.Data_Storing.Yaml;
+﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
+using MeshMakers.GenerateRtModel.Generator.DataStoring;
+using MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel;
+using MeshMakers.GenerateRtModel.Generator.DataStoring.Yaml;
 
-namespace Generator;
+namespace MeshMakers.GenerateRtModel.Generator;
 
 public class CreateRtModel
 {
@@ -47,7 +46,7 @@ public class CreateRtModel
         eqModelRepository.MergeVariablesIntoEqModelRepository(variables);
 
         var eqModelList = eqModelRepository.GetElementList();
-        new ConsoleOutput().WriteToConsole(eqModelList);
+        ConsoleOutput.WriteToConsole(eqModelList);
             
             
         //Generate RtModel

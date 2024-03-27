@@ -1,6 +1,6 @@
-﻿using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
+﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
 
-namespace MeshMakers.GenerateRtModel.Generator.Data_Storing.RtModel;
+namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel;
 
 public class RtModelManager
 {

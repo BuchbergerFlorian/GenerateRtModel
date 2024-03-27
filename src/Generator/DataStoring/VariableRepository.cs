@@ -1,4 +1,4 @@
-﻿namespace MeshMakers.GenerateRtModel.Generator.Data_Storing
+﻿namespace MeshMakers.GenerateRtModel.Generator.DataStoring
 {
     public class VariableRepository
     {

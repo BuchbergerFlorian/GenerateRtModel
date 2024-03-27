@@ -1,7 +1,7 @@
 ﻿using System.IO;
+using MeshMakers.GenerateRtModel.Generator;
 using MeshMakers.GenerateRtModel.Wizard.Includes;
 using Scada.AddIn.Contracts;
-using MeshMakers.GenerateRtModel.Generator;
 
 namespace MeshMakers.GenerateRtModel.Wizard
 {

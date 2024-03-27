@@ -1,6 +1,6 @@
-﻿using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
+﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
 
-namespace MeshMakers.GenerateRtModel.Generator.Data_Storing;
+namespace MeshMakers.GenerateRtModel.Generator.DataStoring;
 
 public class EqModelRepository
 {

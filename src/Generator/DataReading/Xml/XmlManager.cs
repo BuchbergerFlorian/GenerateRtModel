@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
-using MeshMakers.GenerateRtModel.Generator.Data_Storing;
+using MeshMakers.GenerateRtModel.Generator.DataStoring;
 
-namespace MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml
+namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
 {
     public class XmlManager
     {

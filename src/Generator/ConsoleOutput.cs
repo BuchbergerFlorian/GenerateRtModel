@@ -1,10 +1,10 @@
-﻿using MeshMakers.GenerateRtModel.Generator.Data_Reading.Xml;
+﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
 
-namespace MeshMakers.GenerateRtModel.Generator.Console_Output;
+namespace MeshMakers.GenerateRtModel.Generator;
 
-public class ConsoleOutput
+public static class ConsoleOutput
 {
-    public void WriteToConsole(List<XmlElementData>? eqModelList)
+    public static void WriteToConsole(List<XmlElementData>? eqModelList)
     {
         if (eqModelList != null)
             foreach (var item in eqModelList)
