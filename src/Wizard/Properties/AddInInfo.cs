@@ -6,5 +6,5 @@
 // Declares that this add-in depends on the scada v1.0 add-in root
 [assembly: AddinDependency("::scada", "1.0")]
 
-[assembly: AddinName("Wizard")]
+[assembly: AddinName("OctoMeshRtModelWizard")]
 [assembly: AddinDescription("")]

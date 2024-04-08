@@ -4,34 +4,33 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel;
 
 public class RtModelManager
 {
-    private readonly RtModel _rtModel;
+    private readonly RtModelTemplate _rtModelTemplate;
 
     public RtModelManager(List<XmlElementData>? eqModelList)
     {
-        _rtModel = new RtModel();
-        CreateModel(eqModelList);
+        _rtModelTemplate = new RtModelTemplate();
+        CreateModelWithTemplate(eqModelList);
     }
 
-    private void CreateModel(List<XmlElementData>? eqModelList)
+    private void CreateModelWithTemplate(List<XmlElementData>? eqModelList)
     {
         if (eqModelList == null) return;
         foreach (var element in eqModelList)
         {
             if (element.ElementType == "Model")
-                _rtModel.AddObjectToRoot(element.ElementName, element.Id);
+                _rtModelTemplate.AddObjectToRoot(element.ElementName, element.Id);
             else
             {
                 if (element.CkTypeId != "")
                 {
-                    _rtModel.AddObjectToRoot(element.ElementName, element.Id, element.TargetId, element.TargetCkType, element.CkTypeId);
+                    _rtModelTemplate.AddObjectToRoot(element.ElementName, element.Id, element.TargetId, element.TargetCkType, element.CkTypeId);
                 }
             }
         }
-        
-        
-        _rtModel.AddCommunicationEdgeAdapter(eqModelList);
-        _rtModel.AddCommunicationDataPipeLine();
+
+        _rtModelTemplate.AddEdgeAdapter(eqModelList);
+        _rtModelTemplate.AddDataPipeLine(eqModelList);
     }
     
-    public RtModel GetRtModel() => _rtModel;
+    public RtModelTemplate GetRtModel() => _rtModelTemplate;
 }

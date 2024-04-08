@@ -14,17 +14,6 @@ public class EdgeAdapterConfig
         ExtractVariablesFromEqModel(eqModelList);
         SerializedVariables = SerializeVariables();
     }
-
-    private string SerializeVariables()
-    {
-        string serializeVariables = JsonSerializer.Serialize(_variables, new JsonSerializerOptions
-        { 
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        });
-        return serializeVariables;
-    }
-
     private void ExtractVariablesFromEqModel(List<XmlElementData>? eqModelList)
     {
         if (eqModelList != null)
@@ -37,5 +26,15 @@ public class EdgeAdapterConfig
                 }
             } 
         }
+    } 
+    private string SerializeVariables()
+    {
+        string serializeVariables = JsonSerializer.Serialize(_variables, new JsonSerializerOptions
+        { 
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        });
+        
+        return serializeVariables;
     }
 }

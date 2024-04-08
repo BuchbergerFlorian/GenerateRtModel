@@ -22,8 +22,8 @@ namespace MeshMakers.GenerateRtModel.Wizard
             string filepathFromZenonXmlEqModel = ExportEquipmentModelToXml();
             string filepathFromXmlZenonVariable = ExportVariablesToXml();
             
-            CreateRtModel rtModel = new CreateRtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
-            rtModel.Create();
+            RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
+            rtModel.CreateRtModel();
 
         }
 
@@ -46,7 +46,6 @@ namespace MeshMakers.GenerateRtModel.Wizard
             {
                 return fileName;
             }
-
             return null;
         }
         

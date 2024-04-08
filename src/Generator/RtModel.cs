@@ -5,19 +5,19 @@ using MeshMakers.GenerateRtModel.Generator.DataStoring.Yaml;
 
 namespace MeshMakers.GenerateRtModel.Generator;
 
-public class CreateRtModel
+public class RtModel
 {
     private readonly string _filepathFromZenonXmlEqModel;
     private readonly string _filepathFromXmlZenonVariable;
-    private XmlManager _xmlManager;
-    public CreateRtModel(string filepathFromZenonXmlEqModel, string filepathFromXmlZenonVariable)
+    private readonly XmlManager _xmlManager;
+    public RtModel(string filepathFromZenonXmlEqModel, string filepathFromXmlZenonVariable)
     {
         _filepathFromZenonXmlEqModel = filepathFromZenonXmlEqModel;
         _filepathFromXmlZenonVariable = filepathFromXmlZenonVariable;
         _xmlManager = new XmlManager();
     }
 
-    public void Create()
+    public void CreateRtModel()
     {
         //Process for reading and manage Zenon EQModel as xml data
         var rootElementInEqModelXml = _xmlManager.GetRootElement(_filepathFromZenonXmlEqModel);
@@ -47,7 +47,7 @@ public class CreateRtModel
 
         var eqModelList = eqModelRepository.GetElementList();
         ConsoleOutput.WriteToConsole(eqModelList);
-            
+        
             
         //Generate RtModel
         var rtModelManager = new RtModelManager(eqModelList);

@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Generator\Generator.csproj" />
+      <ProjectReference Include="..\Wizard\Wizard.csproj" />
     </ItemGroup>
 
 

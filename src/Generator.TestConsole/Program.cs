@@ -10,8 +10,8 @@
             const string filepathFromXmlZenonVariable =
                 @"C:\dev\GenerateRtModel\src\Generator\DataReading\Xml\XML Files\Variables_Basisproject.XML";
 
-            CreateRtModel rtModel = new CreateRtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
-            rtModel.Create();
+            RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
+            rtModel.CreateRtModel();
         }
     }  
 }
