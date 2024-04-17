@@ -10,14 +10,13 @@ public class DataPipeline
     private readonly OctoObjectId _rtId;
     private RtEntityDto[] _dataPipeline = new RtEntityDto[3];
     private readonly RtEntityDto? _edgePipeline;
-    private readonly RtEntityDto? _meshPipeline;
+    private readonly List<XmlElementData> _eqModelList;
     
     public DataPipeline(List<XmlElementData> eqModelList)
     {
         _rtId = OctoObjectId.GenerateNewId();
+        _eqModelList = eqModelList;
         _edgePipeline = new EdgePipeline(_rtId).GetEdgePipeline();
-        _meshPipeline = new MeshPipeline(_rtId, eqModelList).GetMeshPipeline();
-        SetDataPipeline();
     }
 
     public RtEntityDto[] GetDataPipeline()
@@ -25,8 +24,12 @@ public class DataPipeline
         return _dataPipeline;
     }
 
-    private void SetDataPipeline()
+    public async Task CreateDataPipeline()
     {
+        var meshPipeline = new MeshPipeline(_rtId, _eqModelList);
+        await meshPipeline.CreateMeshPipeline();
+        var meshPipelineEntity = await meshPipeline.GetMeshPipeline();
+        
         _dataPipeline =
         [
             new RtEntityDto
@@ -43,7 +46,7 @@ public class DataPipeline
                 ]
             },
             _edgePipeline,
-            _meshPipeline
+            meshPipelineEntity
         ];
     }
 }

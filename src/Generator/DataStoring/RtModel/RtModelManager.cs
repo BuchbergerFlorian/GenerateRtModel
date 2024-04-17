@@ -6,13 +6,12 @@ public class RtModelManager
 {
     private readonly RtModelTemplate _rtModelTemplate;
 
-    public RtModelManager(List<XmlElementData>? eqModelList)
+    public RtModelManager()
     {
         _rtModelTemplate = new RtModelTemplate();
-        CreateModelWithTemplate(eqModelList);
     }
 
-    private void CreateModelWithTemplate(List<XmlElementData>? eqModelList)
+    public async Task CreateModelWithTemplate(List<XmlElementData>? eqModelList)
     {
         if (eqModelList == null) return;
         foreach (var element in eqModelList)
@@ -29,7 +28,7 @@ public class RtModelManager
         }
 
         _rtModelTemplate.AddEdgeAdapter(eqModelList);
-        _rtModelTemplate.AddDataPipeLine(eqModelList);
+        await _rtModelTemplate.AddDataPipeLine(eqModelList);
     }
     
     public RtModelTemplate GetRtModel() => _rtModelTemplate;

@@ -10,12 +10,12 @@ public static class ConsoleOutput
             foreach (var item in eqModelList)
             {
                 Console.WriteLine(item);
-                // var variables = item.Variables;
-                // foreach (var variable in variables)
-                // {
-                //     Console.WriteLine(
-                //         $"Variable Name: {variable.Name}, Variable Description: {variable.Description}");
-                // }
+                var variables = item.Variables;
+                foreach (var variable in variables)
+                {
+                    Console.WriteLine(
+                        $"    Variable Name: {variable.Name}, Variable Description: {variable.Description}");
+                }
             }
     }
 }

@@ -14,15 +14,14 @@ public class MeshPipeline
     {
         _rtId = rtId;
         _meshPipelineConfig = new MeshPipelineConfig(eqModelList);
-        SetMeshPipeline();
     }
     
-    public RtEntityDto? GetMeshPipeline()
+    public async Task<RtEntityDto?> GetMeshPipeline()
     {
         return _meshPipeline;
     }
 
-    private void SetMeshPipeline()
+    public async Task CreateMeshPipeline()
     {
         _meshPipeline = new RtEntityDto
         {
@@ -33,7 +32,7 @@ public class MeshPipeline
                     new RtAttributeDto
                     {
                         Id = "System.Communication/PipelineDefinition",
-                        Value = _meshPipelineConfig.GetMeshPipelineDefinition()
+                        Value = await _meshPipelineConfig.GetMeshPipelineDefinition()
                     }
                 ],
                 Associations = 
@@ -47,6 +46,4 @@ public class MeshPipeline
                 ]
         };
     }
-
-    
 }

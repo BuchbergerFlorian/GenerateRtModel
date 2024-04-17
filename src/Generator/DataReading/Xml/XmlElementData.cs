@@ -9,12 +9,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
         private string? _elementType;
         private string? _elementName;
         private string? _elementDescription;
-        private string _ckTypeId = "";
-        private OctoObjectId _id;
-        private OctoObjectId _targetId;
-        private string _targetCkType = "";
-        private string? _eqGroupName;
-        
+
         private List<StructForVariable> _variables = new();
 
         public XmlElementData(XElement element, int depth)
@@ -67,14 +62,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
             }
         }
         
-        public string CkTypeId
-        {
-            get => _ckTypeId;
-            set
-            {
-                _ckTypeId = value;
-            }
-        }
+        public string CkTypeId { get; private set; }
 
         private string ExtractStringFromDescription(string? description)
         {
@@ -90,39 +78,14 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
             }
         }
 
-        public OctoObjectId Id
-        {
-            get => _id; 
-            private set
-            {
-                _id = value;
-            }
-        }
+        public OctoObjectId Id { get; private set; }
 
-        public OctoObjectId TargetId
-        {
-            get => _targetId;
-            set => _targetId = value;
-        }
-        
-        public string TargetCkType
-        {
-            get => _targetCkType;
-            set
-            {
-                _targetCkType = value;
-            }
-        }
-        
-        public string? EqGroupName
-        {
-            get => _eqGroupName;
-            set
-            {
-                _eqGroupName = value;
-            }
-        }
-        
+        public OctoObjectId TargetId { get; set; }
+
+        public string TargetCkType { get; set; }
+
+        public string? EqGroupName { get; set; }
+
         public List<StructForVariable> Variables
         {
             get => _variables;
@@ -150,7 +113,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
  
         public override string ToString()
         {
-           return $"Depth: {_depth}  {new string(' ', _depth * 2)} Type: {ElementType}: Name: {ElementName}, {_id}, {TargetId}, CkTypeId: {CkTypeId}"; 
+           return $"Depth: {_depth}  {new string(' ', _depth * 2)} Type: {ElementType}: Name: {ElementName}, {Id}, {TargetId}, CkTypeId: {CkTypeId}"; 
         }
     }    
 }

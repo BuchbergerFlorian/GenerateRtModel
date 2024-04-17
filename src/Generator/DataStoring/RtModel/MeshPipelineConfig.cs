@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
+﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
 using Meshmakers.Octo.ConstructionKit.Contracts;
 using Meshmakers.Octo.ConstructionKit.Contracts.DataTransferObjects;
 using Meshmakers.Octo.MeshNodes.Nodes;
@@ -10,19 +8,19 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel;
 
 public class MeshPipelineConfig
 {
-    private Task<string> _meshPipelineDefinitionString;
+    private string _meshPipelineDefinitionString;
     private readonly PipelineConfigurationRoot _meshPipelineDefinition;
 
     public MeshPipelineConfig(List<XmlElementData>? eqModelList)
     {
-        _meshPipelineDefinitionString = Task.FromResult(string.Empty);
+        _meshPipelineDefinitionString = string.Empty;
         _meshPipelineDefinition = new PipelineConfigurationRoot();
         SetMeshPipelineDefinition(eqModelList);
     }
     
-    public Task<string> GetMeshPipelineDefinition()
+    public async Task<string> GetMeshPipelineDefinition()
     {
-        _meshPipelineDefinitionString = SerializeVariables();
+        _meshPipelineDefinitionString = await SerializeMeshPipelineValue();
         return _meshPipelineDefinitionString;
     }
 
@@ -47,52 +45,43 @@ public class MeshPipelineConfig
             { 
                 foreach (var variable in element.Variables)
                 {
+                    var targetId = element.Id;
+                    string ckTypeId = element.CkTypeId;
                     string varName = variable.Name;
                     string varDescription = variable.Description;
-                    CreateUpdateNode(varName, varDescription);
+                    CreateUpdateNode(targetId, ckTypeId,varName, varDescription);
                 }
             } 
         }
     }
     
-    private void CreateUpdateNode(string varName, string varDescription)
+    private void CreateUpdateNode(OctoObjectId targetId,string ckTypeId, string varName, string varDescription)
     {
         var updateInfoNode = new CreateUpdateInfoNodeConfiguration
         {
-            RtId = OctoObjectId.GenerateNewId(), //REPLACE
-            CkTypeId = "Bla/Bla",
+            RtId = targetId, 
+            CkTypeId = ckTypeId,
             TargetPropertyName = "_UpdateItems",
             AttributeUpdates = new List<AttributeUpdateConfiguration>
             {
                 new AttributeUpdateConfiguration
                 {
-                    AttributeName = varDescription, //REPLACE
+                    AttributeName = varDescription, 
                     AttributeValueType = AttributeValueTypesDto.Double,
                     ValuePath = varName
                 }
             }
         };
             
-        _meshPipelineDefinition.Transformations.Add(updateInfoNode);
+        _meshPipelineDefinition.Transformations?.Add(updateInfoNode);
     }
 
-    // private Task<string> SerializeMeshPipelineValue()
-    // {
-    //     PipelineSerializer pipelineSerializer = new PipelineSerializer();
-    //     var serializer = pipelineSerializer.PipelineConfigurationSerializer;
-    //     
-    //     var meshPipelineDefinitionString = serializer.SerializeAsync(_meshPipelineDefinition);
-    //     return meshPipelineDefinitionString;
-    // }
-    
-    private Task<string> SerializeVariables()
+    private async Task<string> SerializeMeshPipelineValue()
     {
-        var serializeVariables = JsonSerializer.Serialize(_meshPipelineDefinition, new JsonSerializerOptions
-        { 
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        });
+        PipelineSerializer pipelineSerializer = new PipelineSerializer();
+        var serializer = pipelineSerializer.PipelineConfigurationSerializer;
         
-        return Task.FromResult(serializeVariables);
+        var meshPipelineDefinitionString = await serializer.SerializeAsync(_meshPipelineDefinition);
+        return meshPipelineDefinitionString;
     }
 }

@@ -15,7 +15,7 @@ namespace MeshMakers.GenerateRtModel.Wizard
         
         #region IEditorWizardExtension implementation
 
-        public void Run(IEditorApplication context, IBehavior behavior)
+        public async void Run(IEditorApplication context, IBehavior behavior)
         {
             _project = context.Workspace.ActiveProject;
 
@@ -23,7 +23,7 @@ namespace MeshMakers.GenerateRtModel.Wizard
             string filepathFromXmlZenonVariable = ExportVariablesToXml();
             
             RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
-            rtModel.CreateRtModel();
+            await rtModel.CreateRtModel();
 
         }
 
@@ -31,31 +31,16 @@ namespace MeshMakers.GenerateRtModel.Wizard
         {
             var fileName = TempFileName;
 
-            if (_project.EquipmentModeling.ExportToXml(fileName))
-            {
-                return fileName;
-            }
-            
-            return null;
+            return _project.EquipmentModeling.ExportToXml(fileName) ? fileName : null;
         }
         
         private string ExportVariablesToXml()
         {
             var fileName = TempFileName;
-            if (_project.VariableCollection.ExportToXml(fileName))
-            {
-                return fileName;
-            }
-            return null;
+            return _project.VariableCollection.ExportToXml(fileName) ? fileName : null;
         }
         
-        private string TempFileName
-        {
-            get
-            {
-                return Path.ChangeExtension(Path.GetTempFileName(), ".xml");
-            }
-        }
+        private string TempFileName => Path.ChangeExtension(Path.GetTempFileName(), ".xml");
 
         #endregion
     }

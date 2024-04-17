@@ -2,7 +2,7 @@
 {
     public static class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             const string filepathFromZenonXmlEqModel =
                 @"C:\dev\GenerateRtModel\src\Generator\DataReading\Xml\XML Files\EQModel_Basisproject.XML";
@@ -11,7 +11,7 @@
                 @"C:\dev\GenerateRtModel\src\Generator\DataReading\Xml\XML Files\Variables_Basisproject.XML";
 
             RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
-            rtModel.CreateRtModel();
+            await rtModel.CreateRtModel();
         }
     }  
 }

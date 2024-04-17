@@ -66,9 +66,10 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel
             Root.Entities.Add(edgeAdapter.GetEdgeAdapter());
         }
 
-        public void AddDataPipeLine(List<XmlElementData> eqModelList)
+        public async Task AddDataPipeLine(List<XmlElementData> eqModelList)
         {
             DataPipeline dataPipeline = new DataPipeline(eqModelList);
+            await dataPipeline.CreateDataPipeline();
             foreach (var rtEntityDto in dataPipeline.GetDataPipeline())
             {
                 Root.Entities.Add(rtEntityDto);

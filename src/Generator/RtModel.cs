@@ -17,7 +17,7 @@ public class RtModel
         _xmlManager = new XmlManager();
     }
 
-    public void CreateRtModel()
+    public async Task CreateRtModel()
     {
         //Process for reading and manage Zenon EQModel as xml data
         var rootElementInEqModelXml = _xmlManager.GetRootElement(_filepathFromZenonXmlEqModel);
@@ -50,7 +50,8 @@ public class RtModel
         
             
         //Generate RtModel
-        var rtModelManager = new RtModelManager(eqModelList);
+        var rtModelManager = new RtModelManager();
+        await rtModelManager.CreateModelWithTemplate(eqModelList);
         var rtModel = rtModelManager.GetRtModel().Root;
             
         //Generate Yaml File
