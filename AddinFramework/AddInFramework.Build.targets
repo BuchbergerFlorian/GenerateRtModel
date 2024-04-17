@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="Scada.Internal.Ide.Build.CreateScadaAddInPackage" AssemblyFile="Scada.Internal.Ide.Build.dll"/>
+  <UsingTask TaskName="Scada.Internal.Ide.Build.GetContractsPath" AssemblyFile="Scada.Internal.Ide.Build.dll"/>
+  <PropertyGroup>
+    <ScadaAddInReferencePath Condition="'$(ScadaAddInReferencePath)' == ''">$(MSBuildThisFileDirectory)</ScadaAddInReferencePath>
+    <ScadaAddInFrameworkPath Condition="'$(ScadaAddInFrameworkPath)' == ''">$(MSBuildThisFileDirectory)</ScadaAddInFrameworkPath>
+    <ScadaAddInPackageFileName Condition="'$(ScadaAddInPackageFileName)' == ''">$(TargetName).scadaAddIn</ScadaAddInPackageFileName>
+    <ScadaAddInPackageFilePath Condition="'$(ScadaAddInPackageFilePath)' == ''">$(OutDir)$(ScadaAddInPackageFileName)</ScadaAddInPackageFilePath>
+    <ScadaAddInMinimalVersion Condition="'$(ScadaAddInMinimalVersion)' == ''"></ScadaAddInMinimalVersion>
+    <ScadaContractsPath Condition="'$(ScadaContractsPath)' == ''"></ScadaContractsPath>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+    <ScadaSelectedDebugTargetInstanceId></ScadaSelectedDebugTargetInstanceId>
+    <ScadaSelectedDebugTargetName></ScadaSelectedDebugTargetName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      CreateScadaAddInPackage;
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CreateScadaAddInPackage" Outputs="$(ScadaAddInPackageFilePath)">
+    <CreateScadaAddInPackage SourceFilePaths="$(OutDir)$(TargetFileName)" TargetFilePaths="$(ScadaAddInPackageFilePath)" />
+
+    <ItemGroup>
+      <FileWrites Include="$(ScadaAddInPackageFilePath)" />
+    </ItemGroup>
+
+    <Message Importance="High" Text="$(MSBuildProjectName) -&gt; $(ScadaAddInPackageFilePath)" Condition="'$(CopyBuildOutputToOutputDirectory)' == 'true' and '$(SkipCopyBuildProduct)'!='true'" />
+  </Target>
+
+  <Target Name="FindScadaMinimalVersionReferences">
+    <GetContractsPath ScadaMinimalVersion="$(ScadaAddInMinimalVersion)">
+      <Output TaskParameter="ContractsPath" PropertyName="ScadaContractsPath" />
+    </GetContractsPath>
+  </Target>
+
+  <Target Name="BeforeResolveReferences" DependsOnTargets="FindScadaMinimalVersionReferences">
+    <CreateProperty Value="$(AssemblySearchPaths);$(ScadaContractsPath);$(ScadaAddInReferencePath)">
+      <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+    </CreateProperty>
+  </Target>
+</Project>
