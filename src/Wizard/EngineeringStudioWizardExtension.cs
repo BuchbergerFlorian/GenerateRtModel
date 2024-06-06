@@ -15,7 +15,7 @@ namespace MeshMakers.GenerateRtModel.Wizard
         
         #region IEditorWizardExtension implementation
 
-        public async void Run(IEditorApplication context, IBehavior behavior)
+        public void Run(IEditorApplication context, IBehavior behavior)
         {
             _project = context.Workspace.ActiveProject;
 
@@ -23,7 +23,7 @@ namespace MeshMakers.GenerateRtModel.Wizard
             string filepathFromXmlZenonVariable = ExportVariablesToXml();
             
             RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
-            await rtModel.CreateRtModel();
+            rtModel.CreateRtModel().GetAwaiter().GetResult();
 
         }
 
