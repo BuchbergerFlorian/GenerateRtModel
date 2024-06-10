@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Meshmakers.Octo.MeshAdaper.Nodes" Version="3.1.18" />
-        <PackageReference Include="Meshmakers.Octo.Runtime.Engine" Version="3.1.18" />
-        <PackageReference Include="Meshmakers.Octo.Sdk.Common" Version="3.1.18" />
+        <PackageReference Include="Meshmakers.Octo.MeshAdaper.Nodes" Version="3.1.36" />
+        <PackageReference Include="Meshmakers.Octo.Runtime.Engine" Version="3.1.97" />
+        <PackageReference Include="Meshmakers.Octo.Sdk.Common" Version="3.1.97" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     </ItemGroup>
 
