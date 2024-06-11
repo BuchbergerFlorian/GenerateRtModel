@@ -6,22 +6,22 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel;
 public class EdgePipeline
 {
     private readonly OctoObjectId _rtId;
-    private RtEntityDto? _edgePipeline;
+    private readonly RtEntityDto _edgePipeline;
 
     public EdgePipeline(OctoObjectId rtId)
     {
         _rtId = rtId;
-        SetEdgePipeline();
+        _edgePipeline = SetEdgePipeline();
     }
     
-    public RtEntityDto? GetEdgePipeline()
+    public RtEntityDto GetEdgePipeline()
     {
         return _edgePipeline;
     }
 
-    private void SetEdgePipeline()
+    private RtEntityDto SetEdgePipeline()
     {
-        _edgePipeline = new RtEntityDto
+        return new RtEntityDto
         {
             RtId = OctoObjectId.GenerateNewId(),
             CkTypeId = "System.Communication/EdgePipeline",

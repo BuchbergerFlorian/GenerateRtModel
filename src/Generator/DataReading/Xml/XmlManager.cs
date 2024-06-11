@@ -53,7 +53,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
 
                     if (!string.IsNullOrEmpty(modelGroup))
                     {
-                        string[] groups = modelGroup.Split(';');
+                        string[] groups = modelGroup!.Split(';');
                         variableList.AddVariableToList(variableName ?? string.Empty, description ?? string.Empty, groups);
                     }
                 }

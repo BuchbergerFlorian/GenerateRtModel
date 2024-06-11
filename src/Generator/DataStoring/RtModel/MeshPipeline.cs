@@ -7,23 +7,24 @@ using Meshmakers.Octo.Runtime.Contracts.DataTransferObjects;
 public class MeshPipeline
 {
     private readonly OctoObjectId _rtId;
-    private RtEntityDto? _meshPipeline;
+    private readonly RtEntityDto _meshPipeline;
     private readonly MeshPipelineConfig _meshPipelineConfig;
 
     public MeshPipeline(OctoObjectId rtId, List<XmlElementData>? eqModelList)
     {
         _rtId = rtId;
         _meshPipelineConfig = new MeshPipelineConfig(eqModelList);
+        _meshPipeline = CreateMeshPipeline();
     }
     
-    public async Task<RtEntityDto?> GetMeshPipeline()
+    public Task<RtEntityDto> GetMeshPipeline()
     {
-        return _meshPipeline;
+        return Task.FromResult(_meshPipeline);
     }
 
-    public async Task CreateMeshPipeline()
+    private RtEntityDto CreateMeshPipeline()
     {
-        _meshPipeline = new RtEntityDto
+        return new RtEntityDto
         {
            RtId = OctoObjectId.GenerateNewId(),
                 CkTypeId = "System.Communication/MeshPipeline",
@@ -32,7 +33,7 @@ public class MeshPipeline
                     new RtAttributeDto
                     {
                         Id = "System.Communication/PipelineDefinition",
-                        Value = await _meshPipelineConfig.GetMeshPipelineDefinition()
+                        Value = _meshPipelineConfig.GetMeshPipelineDefinition().Result  
                     }
                 ],
                 Associations = 

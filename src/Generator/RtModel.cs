@@ -56,6 +56,6 @@ public class RtModel
             
         //Generate Yaml File
         var yamlManager = new YamlManager();
-        yamlManager.GenerateYamlFile(rtModel);
+        await yamlManager.GenerateYamlFile(rtModel);
     }
 }

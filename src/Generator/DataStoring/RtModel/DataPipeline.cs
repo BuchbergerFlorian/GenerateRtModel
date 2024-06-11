@@ -9,7 +9,7 @@ public class DataPipeline
 {
     private readonly OctoObjectId _rtId;
     private RtEntityDto[] _dataPipeline = new RtEntityDto[3];
-    private readonly RtEntityDto? _edgePipeline;
+    private readonly RtEntityDto _edgePipeline;
     private readonly List<XmlElementData> _eqModelList;
     
     public DataPipeline(List<XmlElementData> eqModelList)
@@ -27,7 +27,6 @@ public class DataPipeline
     public async Task CreateDataPipeline()
     {
         var meshPipeline = new MeshPipeline(_rtId, _eqModelList);
-        await meshPipeline.CreateMeshPipeline();
         var meshPipelineEntity = await meshPipeline.GetMeshPipeline();
         
         _dataPipeline =
