@@ -8,3 +8,4 @@
 
 [assembly: AddinName("OctoMeshRtModelWizard")]
 [assembly: AddinDescription("")]
+[assembly: ImportAddinFile("System.Runtime.CompilerServices.Unsafe.dll")]

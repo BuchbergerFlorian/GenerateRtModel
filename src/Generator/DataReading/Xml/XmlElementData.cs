@@ -113,7 +113,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
  
         public override string ToString()
         {
-           return $"Depth: {_depth}  {new string(' ', _depth * 2)} Type: {ElementType}: Name: {ElementName}, {Id}, {TargetId}, CkTypeId: {CkTypeId}"; 
+           return $"Depth: {_depth}  {new string(' ', _depth * 2)} Type: {ElementType}: Name: {ElementName}, ID: {Id}, TargetID: {TargetId}, CkTypeId: {CkTypeId}"; 
         }
     }    
 }

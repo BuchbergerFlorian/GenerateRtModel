@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using MeshMakers.GenerateRtModel.Generator;
 using MeshMakers.GenerateRtModel.Wizard.Includes;
 using Scada.AddIn.Contracts;
@@ -20,17 +21,27 @@ namespace MeshMakers.GenerateRtModel.Wizard
             _project = context.Workspace.ActiveProject;
 
             string filepathFromZenonXmlEqModel = ExportEquipmentModelToXml();
-            string filepathFromXmlZenonVariable = ExportVariablesToXml();
-            
-            RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromXmlZenonVariable);
-            rtModel.CreateRtModel().GetAwaiter().GetResult();
+            string filepathFromZenonXmlVariables = ExportVariablesToXml();
 
+            try
+            {
+                RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromZenonXmlVariables);
+                rtModel.CreateRtModel().GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+            }
+            finally
+            {
+                DeleteFile(filepathFromZenonXmlEqModel);
+                DeleteFile(filepathFromZenonXmlVariables);
+            }
         }
 
         private string ExportEquipmentModelToXml()
         {
             var fileName = TempFileName;
-
             return _project.EquipmentModeling.ExportToXml(fileName) ? fileName : null;
         }
         
@@ -41,6 +52,21 @@ namespace MeshMakers.GenerateRtModel.Wizard
         }
         
         private string TempFileName => Path.ChangeExtension(Path.GetTempFileName(), ".xml");
+        
+        private void DeleteFile(string filePath)
+        {
+            if (filePath != null && File.Exists(filePath))
+            {
+                try
+                {
+                    File.Delete(filePath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error deleting file {filePath}: {ex.Message}");
+                }
+            }
+        }
 
         #endregion
     }
