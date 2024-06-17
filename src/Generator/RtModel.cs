@@ -9,11 +9,13 @@ public class RtModel
 {
     private readonly string _filepathFromZenonXmlEqModel;
     private readonly string _filepathFromXmlZenonVariable;
+    private readonly string _filePathYamlRTModel;
     private readonly XmlManager _xmlManager;
-    public RtModel(string filepathFromZenonXmlEqModel, string filepathFromXmlZenonVariable)
+    public RtModel(string filepathFromZenonXmlEqModel, string filepathFromXmlZenonVariable, string filePathYamlRtModel)
     {
         _filepathFromZenonXmlEqModel = filepathFromZenonXmlEqModel;
         _filepathFromXmlZenonVariable = filepathFromXmlZenonVariable;
+        _filePathYamlRTModel = filePathYamlRtModel;
         _xmlManager = new XmlManager();
     }
 
@@ -56,6 +58,6 @@ public class RtModel
             
         //Generate Yaml File
         var yamlManager = new YamlManager();
-        await yamlManager.GenerateYamlFile(rtModel);
+        await yamlManager.GenerateYamlFile(rtModel, _filePathYamlRTModel);
     }
 }

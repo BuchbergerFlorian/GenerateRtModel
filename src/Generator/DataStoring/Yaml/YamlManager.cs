@@ -16,9 +16,9 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.Yaml
             _rtYamlSerializer = builder.GetRequiredService<IRtYamlSerializer>();
         }
         
-        public async Task GenerateYamlFile(RtModelRootDto root)
+        public async Task GenerateYamlFile(RtModelRootDto root, string filePathYamlRTModel)
         {
-            using var fileStream = File.OpenWrite("C:\\dev\\GenerateRtModel\\src\\Generator\\DataStoring\\Yaml\\RtModel.yaml");
+            using var fileStream = File.OpenWrite(filePathYamlRTModel);
             using var streamWriter = new StreamWriter(fileStream);
             if (_rtYamlSerializer != null)
             {

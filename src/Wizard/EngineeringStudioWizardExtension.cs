@@ -22,10 +22,11 @@ namespace MeshMakers.GenerateRtModel.Wizard
 
             string filepathFromZenonXmlEqModel = ExportEquipmentModelToXml();
             string filepathFromZenonXmlVariables = ExportVariablesToXml();
-
+            string filePathForYamlFile = @"C:\dev\GenerateRtModel\src\Generator\DataStoring\Yaml\RtModel.yaml";
+            
             try
             {
-                RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromZenonXmlVariables);
+                RtModel rtModel = new RtModel(filepathFromZenonXmlEqModel, filepathFromZenonXmlVariables, filePathForYamlFile);
                 rtModel.CreateRtModel().GetAwaiter().GetResult();
             }
             catch (Exception ex)
