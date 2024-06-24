@@ -47,7 +47,7 @@ public class EdgePipeline
 
     private string CreateEdgePipelineValue()
     {
-        const string value = "transformations: \n  - type: PublishToDistributionEventHub@1\n    description: Load to event hub";
+        const string value = "transformations: \n  - type: ReadZenonVariables@1\n    description: Read data from zenon \n  - type: PublishToDistributionEventHub@1\n    description: Load to event hub";
         return value;
     }
 }

@@ -19,4 +19,8 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="DataReading\Xml\XML Files\Variables_Basisproject.xml" />
+    </ItemGroup>
+
 </Project>

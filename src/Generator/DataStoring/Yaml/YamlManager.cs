@@ -18,6 +18,10 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.Yaml
         
         public async Task GenerateYamlFile(RtModelRootDto root, string filePathYamlRTModel)
         {
+            if(File.Exists(filePathYamlRTModel))
+            {
+                File.Delete(filePathYamlRTModel);
+            }
             using var fileStream = File.OpenWrite(filePathYamlRTModel);
             using var streamWriter = new StreamWriter(fileStream);
             if (_rtYamlSerializer != null)

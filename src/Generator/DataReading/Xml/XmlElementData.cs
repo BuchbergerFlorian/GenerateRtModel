@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using Meshmakers.Octo.ConstructionKit.Contracts;
+using Newtonsoft.Json.Linq;
 
 namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
 {
@@ -18,7 +19,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
             ElementType = element.Name.ToString();
             ElementName = element.Element("Name")?.Value;
             ElementDescription = element.Element("Description")?.Value;
-            CkTypeId = ExtractStringFromDescription(ElementDescription);
+            CkTypeId = GetCkTypeIdFromDescription(ElementDescription);
             Id = OctoObjectId.GenerateNewId();
             TargetId = OctoObjectId.Empty;
             TargetCkType = string.Empty;
@@ -64,18 +65,30 @@ namespace MeshMakers.GenerateRtModel.Generator.DataReading.Xml
         
         public string CkTypeId { get; private set; }
 
-        private string ExtractStringFromDescription(string? description)
+        private string GetCkTypeIdFromDescription(string? description)
         {
-            int startIndex = description!.IndexOf('"') + 1;
-            int endIndex = description.LastIndexOf('"');
-            if (startIndex >= 0 && endIndex >= 0 && endIndex > startIndex)
-            {
-                return description.Substring(startIndex, endIndex - startIndex);
-            }
-            else
+            if(description == null)
             {
                 return "";
             }
+
+            JObject json = null;
+            try
+            {
+                json = JObject.Parse(description);
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+
+            var ckTypeId = json.Value<string>("CkTypeId");
+            if (ckTypeId != null)
+            {
+                return ckTypeId;
+            }
+
+            return "";
         }
 
         public OctoObjectId Id { get; private set; }

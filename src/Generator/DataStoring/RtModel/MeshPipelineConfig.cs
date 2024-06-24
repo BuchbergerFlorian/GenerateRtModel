@@ -17,7 +17,7 @@ public class MeshPipelineConfig
         _meshPipelineDefinition = new PipelineConfigurationRoot();
         SetMeshPipelineDefinition(eqModelList);
     }
-    
+
     public async Task<string> GetMeshPipelineDefinition()
     {
         _meshPipelineDefinitionString = await SerializeMeshPipelineValue();
@@ -27,14 +27,37 @@ public class MeshPipelineConfig
     private void SetMeshPipelineDefinition(List<XmlElementData>? eqModelList)
     {
         _meshPipelineDefinition.Transformations = new List<NodeConfiguration>()
-        { 
+        {
             new RetrieveFromMessageNodeConfiguration
-            { 
+            {
                 Description = "Retrieve from distributed event hub message"
             }
         };
 
         CreateUpdateNodes(eqModelList);
+        CreateApplyChangesNode();
+        CreateSaveInTimeSeriesNode();
+    }
+
+    private void CreateSaveInTimeSeriesNode()
+    {
+        var createTimeSeriesNode = new SaveInTimeSeriesNodeConfiguration()
+        {
+            Description = "Save in time series database",
+        };
+
+        _meshPipelineDefinition.Transformations!.Add(createTimeSeriesNode);
+    }
+
+    private void CreateApplyChangesNode()
+    {
+        var applyChangesNode = new ApplyChangesNodeConfiguration
+        {
+            Description = "Apply changes to RtEntity",
+            TargetPropertyName = "_UpdateItems"
+        };
+
+        _meshPipelineDefinition.Transformations!.Add(applyChangesNode);
     }
 
     private void CreateUpdateNodes(List<XmlElementData>? eqModelList)
@@ -42,45 +65,46 @@ public class MeshPipelineConfig
         if (eqModelList != null)
         {
             foreach (var element in eqModelList)
-            { 
+            {
+                if (element.Variables.Count == 0)
+                {
+                    continue;
+                }
+
+                var node = CreateUpdateNode(element.Id, element.CkTypeId);
+
+
                 foreach (var variable in element.Variables)
                 {
-                    var targetId = element.Id;
-                    string ckTypeId = element.CkTypeId;
-                    string varName = variable.Name;
-                    string varDescription = variable.Description;
-                    CreateUpdateNode(targetId, ckTypeId,varName, varDescription);
+                    node.AttributeUpdates!.Add(new AttributeUpdateConfiguration
+                    {
+                        AttributeName = variable.Description,
+                        ValuePath = $"$.['{variable.Name}']",
+                        AttributeValueType = AttributeValueTypesDto.Double
+                    });
                 }
-            } 
+                
+                _meshPipelineDefinition.Transformations!.Add(node);
+            }
         }
     }
-    
-    private void CreateUpdateNode(OctoObjectId targetId,string ckTypeId, string varName, string varDescription)
+
+    private CreateUpdateInfoNodeConfiguration CreateUpdateNode(OctoObjectId targetId, string ckTypeId)
     {
-        var updateInfoNode = new CreateUpdateInfoNodeConfiguration
+        return new CreateUpdateInfoNodeConfiguration
         {
-            RtId = targetId, 
+            RtId = targetId,
             CkTypeId = ckTypeId,
             TargetPropertyName = "_UpdateItems",
-            AttributeUpdates = new List<AttributeUpdateConfiguration>
-            {
-                new AttributeUpdateConfiguration
-                {
-                    AttributeName = varDescription, 
-                    AttributeValueType = AttributeValueTypesDto.Double,
-                    ValuePath = varName
-                }
-            }
+            AttributeUpdates = [],
         };
-            
-        _meshPipelineDefinition.Transformations?.Add(updateInfoNode);
     }
 
     private async Task<string> SerializeMeshPipelineValue()
     {
         PipelineSerializer pipelineSerializer = new PipelineSerializer();
         var serializer = pipelineSerializer.PipelineConfigurationSerializer;
-        
+
         var meshPipelineDefinitionString = await serializer.SerializeAsync(_meshPipelineDefinition);
         return meshPipelineDefinitionString;
     }

@@ -44,7 +44,7 @@ public class EdgeAdapter
                 new RtAttributeDto
                 {
                     Id = "System.Communication/AdapterConfiguration",
-                    Value = $"variables:{_edgeAdapterConfig.SerializedVariables}"
+                    Value = $"{{\"variables\":{_edgeAdapterConfig.SerializedVariables}}}"
                 }
             ]
         };
