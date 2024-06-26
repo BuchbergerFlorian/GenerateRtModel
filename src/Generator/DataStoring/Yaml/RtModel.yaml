@@ -1,0 +1,977 @@
+$schema: https://schemas.meshmakers.cloud/runtime-model.schema.json
+dependencies:
+- Basic-1.0.0
+- Industry.Basic-1.0.0
+- Industry.Energy-1.0.0
+- Environment-1.0.0
+- System.Communication-1.0.0
+entities:
+- rtId: 667acc3be06025c7329fc57a
+  ckTypeId: Basic-1.0.0/EquipmentModel-1.0.0
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Meshmakers
+- rtId: 667acc3be06025c7329fc57b
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57a
+    targetCkTypeId: Basic-1.0.0/EquipmentModel-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Salzburg
+- rtId: 667acc3be06025c7329fc57c
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57b
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Production Area
+- rtId: 667acc3be06025c7329fc57d
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Spezial Manufactoring
+- rtId: 667acc3be06025c7329fc57e
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57d
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Production Line 200
+- rtId: 667acc3be06025c7329fc57f
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Welding Station
+- rtId: 667acc3be06025c7329fc580
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Welding Robot
+- rtId: 667acc3be06025c7329fc581
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc580
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 1
+- rtId: 667acc3be06025c7329fc582
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc580
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 2
+- rtId: 667acc3be06025c7329fc583
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc580
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 3
+- rtId: 667acc3be06025c7329fc584
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc580
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energiezähler
+- rtId: 667acc3be06025c7329fc585
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Covers
+- rtId: 667acc3be06025c7329fc586
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc585
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 1
+- rtId: 667acc3be06025c7329fc587
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc585
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 2
+- rtId: 667acc3be06025c7329fc588
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc585
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 3
+- rtId: 667acc3be06025c7329fc589
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc585
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energiezähler
+- rtId: 667acc3be06025c7329fc58a
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Sockets
+- rtId: 667acc3be06025c7329fc58b
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58a
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 1
+- rtId: 667acc3be06025c7329fc58c
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58a
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 2
+- rtId: 667acc3be06025c7329fc58d
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58a
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 3
+- rtId: 667acc3be06025c7329fc58e
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58a
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energiezähler
+- rtId: 667acc3be06025c7329fc58f
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Output
+- rtId: 667acc3be06025c7329fc590
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 1
+- rtId: 667acc3be06025c7329fc591
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 2
+- rtId: 667acc3be06025c7329fc592
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 3
+- rtId: 667acc3be06025c7329fc593
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc58f
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energiezähler
+- rtId: 667acc3be06025c7329fc594
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Mounting Station
+- rtId: 667acc3be06025c7329fc595
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc594
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Heatsinks
+- rtId: 667acc3be06025c7329fc596
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc595
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 1
+- rtId: 667acc3be06025c7329fc597
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc595
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 2
+- rtId: 667acc3be06025c7329fc598
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc595
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 3
+- rtId: 667acc3be06025c7329fc599
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc595
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energiezähler
+- rtId: 667acc3be06025c7329fc59a
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Warehouse Covers
+- rtId: 667acc3be06025c7329fc59b
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Warehouse Sockets
+- rtId: 667acc3be06025c7329fc59c
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: EnvironmentalGoals
+- rtId: 667acc3be06025c7329fc59d
+  ckTypeId: Environment-1.0.0/EnvironmentalGoal-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc59c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: CarbonFootprint
+  - id: Environment-1.0.0/GoalText-1.0.0
+    value: Reduce energy consumption by 8%
+  - id: Environment-1.0.0/GoalState-1.0.0
+    value: 2
+- rtId: 667acc3be06025c7329fc59e
+  ckTypeId: Environment-1.0.0/EnvironmentalGoal-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc59c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: EnergyConsumption
+  - id: Environment-1.0.0/GoalText-1.0.0
+    value: Reduce carbon footprint by 5%
+  - id: Environment-1.0.0/GoalState-1.0.0
+    value: 1
+- rtId: 667acc3be06025c7329fc59f
+  ckTypeId: Environment-1.0.0/EnvironmentalGoal-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc59c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: RenewableEnergy
+  - id: Environment-1.0.0/GoalText-1.0.0
+    value: Renewable energy usage at 50%
+  - id: Environment-1.0.0/GoalState-1.0.0
+    value: 1
+- rtId: 667acc3be06025c7329fc5a0
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: TotalPowerConsumption
+- rtId: 667acc3be06025c7329fc5a1
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57e
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: CurrentPowerConsumption
+- rtId: 667acc3be06025c7329fc5a2
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57d
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Production Line 300
+- rtId: 667acc3be06025c7329fc5a3
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a2
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Welding Station
+- rtId: 667acc3be06025c7329fc5a4
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a3
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Welding Robot
+- rtId: 667acc3be06025c7329fc5a5
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 1
+- rtId: 667acc3be06025c7329fc5a6
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 2
+- rtId: 667acc3be06025c7329fc5a7
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Motor 3
+- rtId: 667acc3be06025c7329fc5a8
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energiezähler
+- rtId: 667acc3be06025c7329fc5a9
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a3
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Covers
+- rtId: 667acc3be06025c7329fc5aa
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a3
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Sockets
+- rtId: 667acc3be06025c7329fc5ab
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a3
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Output
+- rtId: 667acc3be06025c7329fc5ac
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a2
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Mounting Station
+- rtId: 667acc3be06025c7329fc5ad
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5ac
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Manipulation Robot Heatsinks
+- rtId: 667acc3be06025c7329fc5ae
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a2
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Warehouse Covers
+- rtId: 667acc3be06025c7329fc5af
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5a2
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Warehouse Sockets
+- rtId: 667acc3be06025c7329fc5b0
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Standard Manufactoring
+- rtId: 667acc3be06025c7329fc5b1
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Further Manufactoring
+- rtId: 667acc3be06025c7329fc5b2
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Central Prepare
+- rtId: 667acc3be06025c7329fc5b3
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57c
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Tool making
+- rtId: 667acc3be06025c7329fc5b4
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57b
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Energy Area
+- rtId: 667acc3be06025c7329fc5b5
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Plant North
+- rtId: 667acc3be06025c7329fc5b6
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b5
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: ZNKS1
+- rtId: 667acc3be06025c7329fc5b7
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b6
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 2
+- rtId: 667acc3be06025c7329fc5b8
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b6
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 3
+- rtId: 667acc3be06025c7329fc5b9
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b6
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 1
+- rtId: 667acc3be06025c7329fc5be
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Plant East
+- rtId: 667acc3be06025c7329fc5bf
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5be
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: ZNKS3
+- rtId: 667acc3be06025c7329fc5c0
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5bf
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 1
+- rtId: 667acc3be06025c7329fc5c5
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5bf
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 2
+- rtId: 667acc3be06025c7329fc5c6
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5bf
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 3
+- rtId: 667acc3be06025c7329fc5c7
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5b4
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Plant West
+- rtId: 667acc3be06025c7329fc5c8
+  ckTypeId: Industry.Basic-1.0.0/Machine-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5c7
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: ZNKS2
+- rtId: 667acc3be06025c7329fc5c9
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5c8
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 1
+- rtId: 667acc3be06025c7329fc5ce
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5c8
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 2
+- rtId: 667acc3be06025c7329fc5cf
+  ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5c8
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Inverter 3
+- rtId: 667acc3be06025c7329fc5d0
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57b
+    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Quality Area
+- rtId: 667acc3be06025c7329fc5d1
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57a
+    targetCkTypeId: Basic-1.0.0/EquipmentModel-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Langenlois
+- rtId: 667acc3be06025c7329fc5d2
+  ckTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc57a
+    targetCkTypeId: Basic-1.0.0/EquipmentModel-1.0.0
+    attributes: []
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Dubai
+- rtId: 667ac108ef60cc86e830e47e
+  ckTypeId: System.Communication-1.0.0/EdgeAdapter-1.0.0
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Zenon Sample PlugIn
+  - id: System.Communication-1.0.0/AdapterType-1.0.0
+    value: Meshmakers.Plugs.zenon
+  - id: System.Communication-1.0.0/AdapterConfiguration-1.0.0
+    value: '{"variables":["Line200_ActuelRobotConsumption[2].Robot_ActivePower","Line200_ActuelRobotConsumption[0].Robot_ActivePower","Line200_ActuelRobotConsumption[1].Robot_ActivePower","Line200_ActuelRobotConsumption[3].Robot_ActivePower","Line200_ActuelRobotConsumption[4].Robot_ActivePower","Line200_OverviewConsumption.Total_PowerConsumption","Line200_OverviewConsumption.Actual_PowerConsumption","PVArea_Inverters[1].ActualPower","PVArea_Inverters[2].ActualPower","PVArea_Inverters[0].ActualPower","PVArea_Inverters[6].ActualPower","PVArea_Inverters[7].ActualPower","PVArea_Inverters[8].ActualPower","PVArea_Inverters[3].ActualPower","PVArea_Inverters[4].ActualPower","PVArea_Inverters[5].ActualPower"]}'
+- rtId: 667acc3be06025c7329fc5d3
+  ckTypeId: System.Communication-1.0.0/DataPipeline-1.0.0
+  attributes:
+  - id: System-1.0.0/Name-1.0.0
+    value: Zenon Pipeline
+- rtId: 667acc3be06025c7329fc5d4
+  ckTypeId: System.Communication-1.0.0/EdgePipeline-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5d3
+    targetCkTypeId: System.Communication-1.0.0/DataPipeline-1.0.0
+    attributes: []
+  attributes:
+  - id: System.Communication-1.0.0/PipelineDefinition-1.0.0
+    value: >-
+      transformations: 
+        - type: ReadZenonVariables@1
+          description: Read data from zenon 
+        - type: PublishToDistributionEventHub@1
+          description: Load to event hub
+- rtId: 667acc3be06025c7329fc5d5
+  ckTypeId: System.Communication-1.0.0/MeshPipeline-1.0.0
+  associations:
+  - roleId: System-1.0.0/ParentChild-1.0.0
+    targetRtId: 667acc3be06025c7329fc5d3
+    targetCkTypeId: System.Communication-1.0.0/DataPipeline-1.0.0
+    attributes: []
+  attributes:
+  - id: System.Communication-1.0.0/PipelineDefinition-1.0.0
+    value: >+
+      transformations:
+
+      - type: RetrieveFromMessage@1
+        description: Retrieve from distributed event hub message
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc584
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_ActuelRobotConsumption[2].Robot_ActivePower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc589
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_ActuelRobotConsumption[0].Robot_ActivePower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc58e
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_ActuelRobotConsumption[1].Robot_ActivePower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc593
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_ActuelRobotConsumption[3].Robot_ActivePower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc599
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_ActuelRobotConsumption[4].Robot_ActivePower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5a0
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_OverviewConsumption.Total_PowerConsumption']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5a1
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['Line200_OverviewConsumption.Actual_PowerConsumption']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5b7
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[1].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5b8
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[2].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5b9
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[0].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5c0
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[6].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5c5
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[7].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5c6
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[8].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5c9
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[3].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5ce
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[4].ActualPower']
+      - type: CreateUpdateInfo@1
+        targetPropertyName: _UpdateItems
+        appendToTargetPropertyName: true
+        rtId: 667acc3be06025c7329fc5cf
+        ckTypeId: Industry.Energy-1.0.0/EnergyMeter-1.0.0
+        attributeUpdates:
+        - attributeName: Power
+          attributeValueType: Double
+          valuePath: $.['PVArea_Inverters[5].ActualPower']
+      - type: ApplyChanges@1
+        targetPropertyName: _UpdateItems
+        description: Apply changes to RtEntity
+      - type: SaveInTimeSeries@1
+        description: Save in time series database

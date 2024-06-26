@@ -12,7 +12,7 @@ public class EdgeAdapter
     
     public EdgeAdapter(List<XmlElementData>? eqModelList)
     {
-        _rtId = OctoObjectId.GenerateNewId();
+        _rtId = new OctoObjectId("667ac108ef60cc86e830e47e");
         _edgeAdapter = new RtEntityDto();
         _edgeAdapterConfig = new EdgeAdapterConfig(eqModelList);
         SetEdgeAdapter();

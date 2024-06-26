@@ -17,19 +17,24 @@ public class RtModelManager
         foreach (var element in eqModelList)
         {
             if (element.ElementType == "Model")
-                _rtModelTemplate.AddObjectToRoot(element.ElementName, element.Id);
-            else
             {
-                if (element.CkTypeId != "")
-                {
-                    _rtModelTemplate.AddObjectToRoot(element.ElementName, element.Id, element.TargetId, element.TargetCkType, element.CkTypeId);
-                }
+                _rtModelTemplate.AddObjectToRoot(element.ElementName, element.Id);
+            }
+            else if (element.CkTypeId != "")
+            {
+                _rtModelTemplate.AddObjectToRoot(element.ElementName, element.Id, element.TargetId,
+                    element.TargetCkType, element.CkTypeId, element.AdditionalAttributes);
             }
         }
 
         _rtModelTemplate.AddEdgeAdapter(eqModelList);
         await _rtModelTemplate.AddDataPipeLine(eqModelList);
     }
-    
-    public RtModelTemplate GetRtModel() => _rtModelTemplate;
+
+    public RtModelTemplate GetRtModel()
+    {
+        _rtModelTemplate.Root.Dependencies =
+            _rtModelTemplate.Root.Entities.Select(x => x.CkTypeId.ModelId).Distinct().ToList();
+        return _rtModelTemplate;
+    }
 }

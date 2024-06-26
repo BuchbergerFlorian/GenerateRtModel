@@ -1,4 +1,5 @@
-﻿using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
+﻿using System.Linq.Expressions;
+using MeshMakers.GenerateRtModel.Generator.DataReading.Xml;
 using Meshmakers.Octo.ConstructionKit.Contracts;
 using Meshmakers.Octo.Runtime.Contracts.DataTransferObjects;
 
@@ -12,7 +13,7 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel
         {
             Root = new RtModelRootDto
             {
-                Dependencies = ["Basic", "System.Communication"],
+                Dependencies = [],
                 Entities = [],
             };
         }
@@ -34,9 +35,9 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel
             });
         }
     
-        public void AddObjectToRoot(string? elementName, OctoObjectId elementRtId, OctoObjectId targetId, string targetCkType, string ckTypeId)
+        public void AddObjectToRoot(string? elementName, OctoObjectId elementRtId, OctoObjectId targetId, string targetCkType, string ckTypeId, Dictionary<string, object> additionalAttributes)
         {
-            Root.Entities.Add(new RtEntityDto
+            var entity = new RtEntityDto
             {
                 RtId = elementRtId,
                 CkTypeId = ckTypeId,
@@ -57,7 +58,26 @@ namespace MeshMakers.GenerateRtModel.Generator.DataStoring.RtModel
                         TargetRtId = targetId
                     }
                 ]
-            });
+            };
+
+            foreach(var kvp in additionalAttributes)
+            {
+                try
+                {
+                    entity.Attributes.Add(new RtAttributeDto
+                    {
+                        Id = kvp.Key,
+                        Value = kvp.Value
+                    });
+                }catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+   
+            }
+            
+            Root.Entities.Add(entity);
+
         }
 
         public void AddEdgeAdapter(List<XmlElementData>? eqModelList)
